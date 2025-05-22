@@ -19,15 +19,22 @@ public class FlutterPluginUmengPlugin: NSObject, FlutterPlugin {
   }
 
   private func handlePreInit(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    guard let args = call.arguments as? [String: Any] else {
-        result(FlutterError(code: "INVALID_ARGUMENTS", message: "Arguments must be a map", details: nil))
+    guard let arguments = call.arguments as? [String: Any] else {
+          result(FlutterError(code: "INVALID_ARGUMENTS",
+                                         message: "Arguments must be a map",
+                                         details: nil))
+          return
+        }
+
+    guard let appKey = arguments["appKey"] as? String else {
+      result(FlutterError(code: "MISSING_APP_KEY",
+                                     message: "appKey is required",
+                                     details: nil))
+      return
     }
 
-    guard let appKey = call.arguments as? [String: Any] else {
-        result(FlutterError(code: "MISSING_APP_KEY", message: "appKey is required", details: nil))
-    }
-
-    let channel = args["channel"] as? String
+    let channelValue = arguments["channel"] as? String
+    let channel: String? = (channelValue?.isEmpty == false) ? channelValue : nil
 
     UMConfigure.initWithAppkey(appKey, channel: channel)
     result(1)
