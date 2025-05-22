@@ -20,7 +20,7 @@ A new Flutter plugin project.
   # 友盟 SDK 依赖
   s.dependency 'UMCommon'
   # s.dependency 'UMDevice'
-  # s.static.framework = true
+  s.static.framework = true
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
