@@ -13,10 +13,12 @@ class MethodChannelFlutterPluginUmeng extends FlutterPluginUmengPlatform {
   Future<int?> preInit({
     required String appKey,
     required String channel,
+    bool isDebug = false
   }) async {
     final version = await methodChannel.invokeMethod<int>('preInit', {
       'appKey': appKey,
       'channel': channel,
+      'isDebug': isDebug
     });
     return version;
   }

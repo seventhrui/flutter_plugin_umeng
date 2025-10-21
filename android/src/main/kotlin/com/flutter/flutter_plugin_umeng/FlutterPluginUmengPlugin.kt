@@ -31,6 +31,8 @@ class FlutterPluginUmengPlugin: FlutterPlugin, MethodCallHandler {
       call.arguments<Map<String, Any>>()?.let {
         val appKey = it["appKey"] as String
         val channel = it["channel"] as String
+        val isDebug = it["isDebug"] as Boolean
+        UMConfigure.setLogEnabled(isDebug)
         UMConfigure.preInit(context, appKey, channel)
         UMConfigure.submitPolicyGrantResult(context, true)
         result.success(1)

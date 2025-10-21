@@ -25,7 +25,8 @@ abstract class FlutterPluginUmengPlatform extends PlatformInterface {
 
   Future<int?> preInit({
     required String appKey,
-    required String channel
+    required String channel,
+    bool isDebug = false
   }) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
