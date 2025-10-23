@@ -1,6 +1,7 @@
 package com.flutter.flutter_plugin_umeng
 
 import android.content.Context
+import android.util.Log
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -32,6 +33,7 @@ class FlutterPluginUmengPlugin: FlutterPlugin, MethodCallHandler {
         val appKey = it["appKey"] as String
         val channel = it["channel"] as String
         val isDebug = it["isDebug"] as Boolean
+        Log.e("友盟", "appkey:${appKey}; channel:${channel}; isDebug:${isDebug}")
         UMConfigure.setLogEnabled(isDebug)
         UMConfigure.preInit(context, appKey, channel)
         UMConfigure.submitPolicyGrantResult(context, true)
